@@ -2,7 +2,6 @@
 
 namespace Max13\TelegramSocialite;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 use Laravel\Socialite\Two\AbstractProvider;
@@ -12,14 +11,14 @@ use Laravel\Socialite\Two\User;
 class Provider extends AbstractProvider implements ProviderInterface
 {
     /**
-     * Telegram bot username
+     * Telegram bot username.
      *
      * @var string
      */
     protected $botname;
 
     /**
-     * Set botname
+     * Set botname.
      *
      * @param  string $botname
      * @return void
@@ -34,7 +33,7 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getAuthUrl($state)
     {
-        return null;
+        //
     }
 
     /**
@@ -42,7 +41,7 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getTokenUrl()
     {
-        return null;
+        //
     }
 
     /**
@@ -50,11 +49,11 @@ class Provider extends AbstractProvider implements ProviderInterface
      */
     protected function getUserByToken($token)
     {
-        return null;
+        //
     }
 
     /**
-     * Return the login button in HTML
+     * Return the login button in HTML.
      *
      * @return string
      */

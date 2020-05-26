@@ -21,6 +21,7 @@ class ServiceProvider extends BaseServiceProvider
                 $config = $app['config']['services.telegram'];
                 $provider = $socialite->buildProvider(Provider::class, $config);
                 $provider->setBotname($config['botname']);
+
                 return $provider;
             }
         );
