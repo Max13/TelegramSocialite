@@ -1,0 +1,34 @@
+{
+    "name": "max13/telegram-socialite",
+    "description": "Telegram provider for Laravel Socialite",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adnan RIHAN",
+            "email": "adnan@rihan.fr"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/max13/telegram-socialite/issues",
+        "source": "https://github.com/max13/telegram-socialite"
+    },
+    "autoload": {
+        "psr-4": {
+            "Max13\\TelegramSocialite\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Max13\\TelegramSocialite\\ServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
+        "laravel/socialite": "^4.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
