@@ -18,6 +18,13 @@ class Provider extends AbstractProvider implements ProviderInterface
     protected $botname;
 
     /**
+     * Telegram button size.
+     *
+     * @var string
+     */
+    protected $size = 'large';
+
+    /**
      * Set botname.
      *
      * @param  string $botname
@@ -26,6 +33,17 @@ class Provider extends AbstractProvider implements ProviderInterface
     public function setBotname($botname)
     {
         $this->botname = $botname;
+    }
+
+    /**
+     * Set size.
+     *
+     * @param  string $size Possible values: large, medium, small
+     * @return void
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
     }
 
     /**
@@ -60,9 +78,15 @@ class Provider extends AbstractProvider implements ProviderInterface
     public function getButton()
     {
         $botname = $this->botname;
+        $size = $this->size;
         $callbackUrl = $this->redirectUrl;
 
-        return '<script async src="https://telegram.org/js/telegram-widget.js" data-telegram-login="'.$botname.'" data-size="large" data-userpic="false" data-auth-url="'.$callbackUrl.'" data-request-access="write"></script>';
+        return sprintf(
+            '<script async src="https://telegram.org/js/telegram-widget.js" data-telegram-login="%s" data-size="%s" data-userpic="false" data-auth-url="%s" data-request-access="write"></script>',
+            $botname,
+            $size,
+            $callbackUrl
+        );
     }
 
     /**

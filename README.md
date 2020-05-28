@@ -27,6 +27,7 @@ Then, as required by [Laravel Socialite](https://laravel.com/docs/socialite#conf
     'client_id' => null,
     'client_secret' => env('TELEGRAM_TOKEN'),
     'redirect' => '/login/telegram/callback',
+    'size' => 'large', // 'large', 'medium', 'small'
 ]
 ```
 
