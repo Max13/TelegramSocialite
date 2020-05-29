@@ -2,6 +2,12 @@
     "name": "max13/telegram-socialite",
     "description": "Telegram provider for Laravel Socialite",
     "type": "library",
+    "keywords": [
+        "Laravel",
+        "Laravel Socialite",
+        "Telegram",
+        "OAuth"
+    ],
     "license": "MIT",
     "authors": [
         {
