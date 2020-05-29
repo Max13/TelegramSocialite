@@ -1,4 +1,5 @@
-[![Style Status](https://github.styleci.io/repos/266998759/shield?branch=master)](https://github.styleci.io/repos/266998759)
+
+[![Style Status](https://github.styleci.io/repos/266998759/shield?branch=master)](https://github.styleci.io/repos/266998759) [![Latest Stable Version](https://poser.pugx.org/max13/telegram-socialite/v)](//packagist.org/packages/max13/telegram-socialite)
 
 
 # TelegramSocialite
@@ -23,30 +24,34 @@ Then, as required by [Laravel Socialite](https://laravel.com/docs/socialite#conf
 
 ```php
 'telegram' => [
-    'botname' => 'mysuper_bot',
     'client_id' => null,
     'client_secret' => env('TELEGRAM_TOKEN'),
     'redirect' => '/login/telegram/callback',
-    'size' => 'large', // 'large', 'medium', 'small'
 ]
 ```
 
 
 ## Usage
 
-Now, Telegram is technically using `OAuth`, but not the usual workflow. To show the login button, you have to load a `<script>` tag where you want the button to be (the script loads an iframe containing the necessary) using:
+Now, Telegram is technically using `OAuth`, but not the usual workflow.
+
+First or all, you **must** add a javascript to your page, anywhere you want (in the `<head>` or bottom of page) with this snippet:
 
 ```php
-Socialite::driver('telegram')->getButton();
+{!! Socialite::driver('telegram')->getScript() !!}
 ```
 
-Anyway, if you use `Socialite::driver('telegram')->redirect()`, the provider still has your back and will simply show the button alone on an empty page.
+You also **must** call `_TWidgetLogin.auth()` on click on your login button, which will open a popup showing the Telegram OAuth access request. Because of browser's security, you can't automatically call this, it must be called as a result of a user's action.
 
-When the user clicks on the button, `a new window is opened` and when the user is logged-in, the script will redirect on your `redirect` URL, with a payload in the query. Then you access the logged-in user data the classic `Socialite` way:
+If the user **accept** the access request, the browser is redirected to your `services.telegram.redirect` config key and you will have access to the logged-in user data the classic `Socialite` way:
 
 ```php
 Socialite::driver('telegram')->user();
 ```
+
+If the user **declines**, an `InvalidArgumentException` exception will be thrown.
+
+Using `Socialite::driver('telegram')->redirect()` will abort the connection with a `404` error.
 
 If you want to see the Telegram Widget configuration page: https://core.telegram.org/widgets/login
 
