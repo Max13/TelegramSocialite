@@ -152,12 +152,17 @@ EOD;
         $name = $user['first_name'] ?? '';
         $name .= ' ';
         $name .= $user['last_name'] ?? '';
+        $name = trim($name);
+
+        if (! $name) {
+            $name = null;
+        }
 
         return (new User())->setRaw($user)->map([
             'id'        => $user['id'],
             'nickname'  => $user['username'],
-            'name'      => trim($name),
-            'avatar'    => $user['photo_url'],
+            'name'      => $name,
+            'avatar'    => $user['photo_url'] ?? null,
         ]);
     }
 
