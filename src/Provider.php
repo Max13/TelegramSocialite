@@ -149,10 +149,14 @@ EOD;
      */
     protected function mapUserToObject(array $user)
     {
+        $name = $user['first_name'] ?? '';
+        $name .= ' ';
+        $name .= $user['last_name'] ?? '';
+
         return (new User())->setRaw($user)->map([
             'id'        => $user['id'],
             'nickname'  => $user['username'],
-            'name'      => trim($user['first_name'].' '.$user['last_name']),
+            'name'      => trim($name),
             'avatar'    => $user['photo_url'],
         ]);
     }
